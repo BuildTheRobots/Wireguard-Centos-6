@@ -13,18 +13,18 @@ reboot
 curl -Lo /etc/yum.repos.d/wireguard.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
 yum install epel-release
 yum install wireguard-dkms-0.0.20190702-1.el7.noarch
-cd /usr/src/wireguard-0.0.20190702/
+cd /usr/src/wireguard-0.0.20191012/
 wget https://github.com/Intika-Linux-Wireguard/Wireguard-Centos-6/raw/master/quick.patch
 patch < quick.patch
-dkms build -m wireguard -v 0.0.20190702
-dkms install -m wireguard -v 0.0.20190702
+dkms build -m wireguard -v 0.0.20191012
+dkms install -m wireguard -v 0.0.20191012
 
 yum install centos-release-scl devtoolset-6
 cd
-wget https://github.com/WireGuard/WireGuard/archive/0.0.20190702.tar.gz
-tar -xvf 0.0.20190702.tar.gz
-cd WireGuard-0.0.20190702/src/tools/
-yum install libmnl-devel
+git clone https://github.com/Wireguard/Wireguard.git
+git checkout -b 20191012 0.0.20191012
+cd WireGuard/src/tools/
+yum install libmnl-devel devtoolset-6-runtime
 scl enable devtoolset-6 bash
 make
 make install
