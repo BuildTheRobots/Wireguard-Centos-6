@@ -23,8 +23,9 @@ yum install centos-release-scl
 yum install devtoolset-6 libmnl-devel devtoolset-6-runtime
 cd
 git clone https://github.com/Wireguard/Wireguard.git
+cd WireGuard/
 git checkout -b 20191012 0.0.20191012
-cd WireGuard/src/tools/
+cd src/tools/
 scl enable devtoolset-6 bash
 make
 make install
